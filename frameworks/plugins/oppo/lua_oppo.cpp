@@ -1,5 +1,5 @@
 //
-// AUTO BUILD, DON'T MODIFY!
+// AUTO GENERATED, DO NOT MODIFY!
 //
 #include "lua_oppo.h"
 #include "lua-bindings/lua_cocos2d_types.h"
@@ -7,7 +7,7 @@
 #include "oppo/oppo.h"
 
 #ifdef CCLUA_BUILD_OPPO
-static int _cclua_plugin_oppo___gc(lua_State *L)
+static int _olua_fun_cclua_plugin_oppo___gc(lua_State *L)
 {
     olua_startinvoke(L);
 
@@ -19,7 +19,7 @@ static int _cclua_plugin_oppo___gc(lua_State *L)
     return 0;
 }
 
-static int _cclua_plugin_oppo___olua_move(lua_State *L)
+static int _olua_fun_cclua_plugin_oppo___olua_move(lua_State *L)
 {
     olua_startinvoke(L);
 
@@ -31,7 +31,7 @@ static int _cclua_plugin_oppo___olua_move(lua_State *L)
     return 1;
 }
 
-static int _cclua_plugin_oppo_dispatch(lua_State *L)
+static int _olua_fun_cclua_plugin_oppo_dispatch(lua_State *L)
 {
     olua_startinvoke(L);
 
@@ -49,7 +49,7 @@ static int _cclua_plugin_oppo_dispatch(lua_State *L)
     return 0;
 }
 
-static int _cclua_plugin_oppo_init(lua_State *L)
+static int _olua_fun_cclua_plugin_oppo_init(lua_State *L)
 {
     olua_startinvoke(L);
 
@@ -61,7 +61,7 @@ static int _cclua_plugin_oppo_init(lua_State *L)
     return 0;
 }
 
-static int _cclua_plugin_oppo_pay(lua_State *L)
+static int _olua_fun_cclua_plugin_oppo_pay(lua_State *L)
 {
     olua_startinvoke(L);
 
@@ -87,7 +87,7 @@ static int _cclua_plugin_oppo_pay(lua_State *L)
     return 0;
 }
 
-static int _cclua_plugin_oppo_setDispatcher(lua_State *L)
+static int _olua_fun_cclua_plugin_oppo_setDispatcher(lua_State *L)
 {
     olua_startinvoke(L);
 
@@ -97,9 +97,10 @@ static int _cclua_plugin_oppo_setDispatcher(lua_State *L)
 
     void *cb_store = (void *)olua_pushclassobj(L, "cclua.plugin.oppo");
     std::string cb_tag = "Dispatcher";
-    std::string cb_name = olua_setcallback(L, cb_store,  1, cb_tag.c_str(), OLUA_TAG_REPLACE);
+    std::string cb_name = olua_setcallback(L, cb_store, 1, cb_tag.c_str(), OLUA_TAG_REPLACE);
     olua_Context cb_ctx = olua_context(L);
-    arg1 = [cb_store, cb_name, cb_ctx](const std::string &arg1, const cocos2d::Value &arg2) {
+    // lua_State *ML = olua_mainthread(L);
+    arg1 = [cb_store, cb_name, cb_ctx /*, ML */](const std::string &cb_arg1, const cocos2d::Value &cb_arg2) {
         lua_State *L = olua_mainthread(NULL);
         olua_checkhostthread();
 
@@ -107,8 +108,8 @@ static int _cclua_plugin_oppo_setDispatcher(lua_State *L)
             int top = lua_gettop(L);
             size_t last = olua_push_objpool(L);
             olua_enable_objpool(L);
-            olua_push_string(L, arg1);
-            olua_push_cocos2d_Value(L, arg2);
+            olua_push_string(L, cb_arg1);
+            olua_push_cocos2d_Value(L, cb_arg2);
             olua_disable_objpool(L);
 
             olua_callback(L, cb_store, cb_name.c_str(), 2);
@@ -119,7 +120,7 @@ static int _cclua_plugin_oppo_setDispatcher(lua_State *L)
         }
     };
 
-    // static void setDispatcher(@localvar const cclua::Callback &dispatcher)
+    // static void setDispatcher(const cclua::Callback &dispatcher)
     cclua::plugin::oppo::setDispatcher(arg1);
 
     olua_endinvoke(L);
@@ -127,17 +128,26 @@ static int _cclua_plugin_oppo_setDispatcher(lua_State *L)
     return 0;
 }
 
+static int _olua_cls_cclua_plugin_oppo(lua_State *L)
+{
+    oluacls_class<cclua::plugin::oppo>(L, "cclua.plugin.oppo");
+    oluacls_func(L, "__gc", _olua_fun_cclua_plugin_oppo___gc);
+    oluacls_func(L, "__olua_move", _olua_fun_cclua_plugin_oppo___olua_move);
+    oluacls_func(L, "dispatch", _olua_fun_cclua_plugin_oppo_dispatch);
+    oluacls_func(L, "init", _olua_fun_cclua_plugin_oppo_init);
+    oluacls_func(L, "pay", _olua_fun_cclua_plugin_oppo_pay);
+    oluacls_func(L, "setDispatcher", _olua_fun_cclua_plugin_oppo_setDispatcher);
+
+    return 1;
+}
+
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_cclua_plugin_oppo(lua_State *L)
 {
-    oluacls_class<cclua::plugin::oppo>(L, "cclua.plugin.oppo");
-    oluacls_func(L, "__gc", _cclua_plugin_oppo___gc);
-    oluacls_func(L, "__olua_move", _cclua_plugin_oppo___olua_move);
-    oluacls_func(L, "dispatch", _cclua_plugin_oppo_dispatch);
-    oluacls_func(L, "init", _cclua_plugin_oppo_init);
-    oluacls_func(L, "pay", _cclua_plugin_oppo_pay);
-    oluacls_func(L, "setDispatcher", _cclua_plugin_oppo_setDispatcher);
-
+    olua_require(L, "oppo",  luaopen_oppo);
+    if (!olua_getclass(L, "cclua.plugin.oppo")) {
+        luaL_error(L, "class not found: cclua::plugin::oppo");
+    }
     return 1;
 }
 OLUA_END_DECLS
@@ -147,7 +157,7 @@ OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_oppo(lua_State *L)
 {
 #ifdef CCLUA_BUILD_OPPO
-    olua_require(L, "cclua.plugin.oppo", luaopen_cclua_plugin_oppo);
+    olua_require(L, "cclua.plugin.oppo", _olua_cls_cclua_plugin_oppo);
 #endif
 
     return 0;

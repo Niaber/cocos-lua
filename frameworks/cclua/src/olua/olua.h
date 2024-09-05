@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2019-2022 codetypes@gmail.com
+ * Copyright (c) 2019-2024 codetypes@gmail.com
  *
  * https://github.com/zhongfq/olua
  *
@@ -62,14 +62,6 @@ OLUA_BEGIN_DECLS
 #endif
 #endif // olua_assert
 
-#ifndef olua_debug_assert
-#ifdef OLUA_DEBUG
-#define olua_debug_assert(e, msg) assert((e) && (msg))
-#else
-#define olua_debug_assert(e, msg) ((void)0)
-#endif
-#endif // olua_debug_assert
-
 #define olua_noapi(api) static_assert(false, #api" is not defined")
 
 #if !defined(olua_likely)
@@ -86,11 +78,15 @@ OLUA_BEGIN_DECLS
 #define OLUA_API extern
 #endif
 
+#ifndef OLUA_LIB
 #ifdef _WIN32
 #define OLUA_LIB __declspec(dllexport)
+#elif defined(__cplusplus)
+#define OLUA_LIB __attribute__((visibility ("default")))
 #else
 #define OLUA_LIB extern
-#endif
+#endif // _WIN32
+#endif // OLUA_LIB
 
 // olua config file: https://codetypes.com/posts/c505b168/
 #ifdef OLUA_AUTOCONF
@@ -135,6 +131,8 @@ OLUA_BEGIN_DECLS
 
 // default super class of object
 #define OLUA_VOIDCLS "void *"
+#define OLUA_ENUMCLS "enum *"
+#define OLUA_OLUALIB "olua.c"
 
 // any type
 #define LUA_TANY (LUA_TNONE - 1000)
@@ -169,6 +167,7 @@ OLUA_API bool olua_isinteger(lua_State *L, int idx);
 #define olua_pushnumber(L, v)       (lua_pushnumber(L, (v)))
 #define olua_pushstring(L, v)       (lua_pushstring(L, (v)))
 #define olua_pushlstring(L, v, l)   (lua_pushlstring(L, (v), (l)))
+#define olua_pushenum(L, v)         (lua_pushlightuserdata(L, (void *)(intptr_t)(v)))
 #define olua_tonumber(L, i)         (lua_tonumber(L, (i)))
 #define olua_tointeger(L, i)        (lua_tointeger(L, (i)))
 #define olua_tostring(L, i)         (lua_tostring(L, (i)))

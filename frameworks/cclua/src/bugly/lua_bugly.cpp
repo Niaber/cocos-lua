@@ -1,5 +1,5 @@
 //
-// AUTO BUILD, DON'T MODIFY!
+// AUTO GENERATED, DO NOT MODIFY!
 //
 #include "lua_bugly.h"
 #include "lua-bindings/lua_cocos2d_types.h"
@@ -7,12 +7,23 @@
 #include "bugly/CrashReport.h"
 
 #ifdef CCLUA_BUILD_BUGLY
-OLUA_BEGIN_DECLS
-OLUA_LIB int luaopen_cclua_bugly_LogLevel(lua_State *L)
+static int _olua_fun_cclua_bugly_LogLevel___call(lua_State *L)
+{
+    olua_startinvoke(L);
+
+    olua_pushenum(L, olua_checkinteger(L, -1));
+
+    olua_endinvoke(L);
+
+    return 1;
+}
+
+static int _olua_cls_cclua_bugly_LogLevel(lua_State *L)
 {
     oluacls_class<cclua::bugly::LogLevel>(L, "cclua.bugly.LogLevel");
     oluacls_func(L, "__index", olua_indexerror);
     oluacls_func(L, "__newindex", olua_newindexerror);
+    oluacls_func(L, "__call", _olua_fun_cclua_bugly_LogLevel___call);
     oluacls_enum(L, "Debug", (lua_Integer)cclua::bugly::LogLevel::Debug);
     oluacls_enum(L, "Error", (lua_Integer)cclua::bugly::LogLevel::Error);
     oluacls_enum(L, "Info", (lua_Integer)cclua::bugly::LogLevel::Info);
@@ -22,11 +33,21 @@ OLUA_LIB int luaopen_cclua_bugly_LogLevel(lua_State *L)
 
     return 1;
 }
+
+OLUA_BEGIN_DECLS
+OLUA_LIB int luaopen_cclua_bugly_LogLevel(lua_State *L)
+{
+    olua_require(L, "bugly",  luaopen_bugly);
+    if (!olua_getclass(L, "cclua.bugly.LogLevel")) {
+        luaL_error(L, "class not found: cclua::bugly::LogLevel");
+    }
+    return 1;
+}
 OLUA_END_DECLS
 #endif
 
 #ifdef CCLUA_BUILD_BUGLY
-static int _cclua_bugly___gc(lua_State *L)
+static int _olua_fun_cclua_bugly___gc(lua_State *L)
 {
     olua_startinvoke(L);
 
@@ -38,7 +59,7 @@ static int _cclua_bugly___gc(lua_State *L)
     return 0;
 }
 
-static int _cclua_bugly___olua_move(lua_State *L)
+static int _olua_fun_cclua_bugly___olua_move(lua_State *L)
 {
     olua_startinvoke(L);
 
@@ -50,7 +71,7 @@ static int _cclua_bugly___olua_move(lua_State *L)
     return 1;
 }
 
-static int _cclua_bugly_init(lua_State *L)
+static int _olua_fun_cclua_bugly_init(lua_State *L)
 {
     olua_startinvoke(L);
 
@@ -66,7 +87,7 @@ static int _cclua_bugly_init(lua_State *L)
     return 0;
 }
 
-static int _cclua_bugly_log(lua_State *L)
+static int _olua_fun_cclua_bugly_log(lua_State *L)
 {
     olua_startinvoke(L);
 
@@ -84,7 +105,7 @@ static int _cclua_bugly_log(lua_State *L)
     return 0;
 }
 
-static int _cclua_bugly_reportException(lua_State *L)
+static int _olua_fun_cclua_bugly_reportException(lua_State *L)
 {
     olua_startinvoke(L);
 
@@ -102,7 +123,7 @@ static int _cclua_bugly_reportException(lua_State *L)
     return 0;
 }
 
-static int _cclua_bugly_setChannel(lua_State *L)
+static int _olua_fun_cclua_bugly_setChannel(lua_State *L)
 {
     olua_startinvoke(L);
 
@@ -118,7 +139,7 @@ static int _cclua_bugly_setChannel(lua_State *L)
     return 0;
 }
 
-static int _cclua_bugly_setTag(lua_State *L)
+static int _olua_fun_cclua_bugly_setTag(lua_State *L)
 {
     olua_startinvoke(L);
 
@@ -134,7 +155,7 @@ static int _cclua_bugly_setTag(lua_State *L)
     return 0;
 }
 
-static int _cclua_bugly_setUid(lua_State *L)
+static int _olua_fun_cclua_bugly_setUid(lua_State *L)
 {
     olua_startinvoke(L);
 
@@ -150,7 +171,7 @@ static int _cclua_bugly_setUid(lua_State *L)
     return 0;
 }
 
-static int _cclua_bugly_setUserValue(lua_State *L)
+static int _olua_fun_cclua_bugly_setUserValue(lua_State *L)
 {
     olua_startinvoke(L);
 
@@ -168,7 +189,7 @@ static int _cclua_bugly_setUserValue(lua_State *L)
     return 0;
 }
 
-static int _cclua_bugly_setVersion(lua_State *L)
+static int _olua_fun_cclua_bugly_setVersion(lua_State *L)
 {
     olua_startinvoke(L);
 
@@ -184,23 +205,32 @@ static int _cclua_bugly_setVersion(lua_State *L)
     return 0;
 }
 
-OLUA_BEGIN_DECLS
-OLUA_LIB int luaopen_cclua_bugly(lua_State *L)
+static int _olua_cls_cclua_bugly(lua_State *L)
 {
     oluacls_class<cclua::bugly>(L, "cclua.bugly");
-    oluacls_func(L, "__gc", _cclua_bugly___gc);
-    oluacls_func(L, "__olua_move", _cclua_bugly___olua_move);
-    oluacls_func(L, "init", _cclua_bugly_init);
-    oluacls_func(L, "log", _cclua_bugly_log);
-    oluacls_func(L, "reportException", _cclua_bugly_reportException);
-    oluacls_func(L, "setChannel", _cclua_bugly_setChannel);
-    oluacls_func(L, "setTag", _cclua_bugly_setTag);
-    oluacls_func(L, "setUid", _cclua_bugly_setUid);
-    oluacls_func(L, "setUserValue", _cclua_bugly_setUserValue);
-    oluacls_func(L, "setVersion", _cclua_bugly_setVersion);
+    oluacls_func(L, "__gc", _olua_fun_cclua_bugly___gc);
+    oluacls_func(L, "__olua_move", _olua_fun_cclua_bugly___olua_move);
+    oluacls_func(L, "init", _olua_fun_cclua_bugly_init);
+    oluacls_func(L, "log", _olua_fun_cclua_bugly_log);
+    oluacls_func(L, "reportException", _olua_fun_cclua_bugly_reportException);
+    oluacls_func(L, "setChannel", _olua_fun_cclua_bugly_setChannel);
+    oluacls_func(L, "setTag", _olua_fun_cclua_bugly_setTag);
+    oluacls_func(L, "setUid", _olua_fun_cclua_bugly_setUid);
+    oluacls_func(L, "setUserValue", _olua_fun_cclua_bugly_setUserValue);
+    oluacls_func(L, "setVersion", _olua_fun_cclua_bugly_setVersion);
 
     cclua::runtime::registerFeature("cclua.bugly", true);
 
+    return 1;
+}
+
+OLUA_BEGIN_DECLS
+OLUA_LIB int luaopen_cclua_bugly(lua_State *L)
+{
+    olua_require(L, "bugly",  luaopen_bugly);
+    if (!olua_getclass(L, "cclua.bugly")) {
+        luaL_error(L, "class not found: cclua::bugly");
+    }
     return 1;
 }
 OLUA_END_DECLS
@@ -210,8 +240,8 @@ OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_bugly(lua_State *L)
 {
 #ifdef CCLUA_BUILD_BUGLY
-    olua_require(L, "cclua.bugly.LogLevel", luaopen_cclua_bugly_LogLevel);
-    olua_require(L, "cclua.bugly", luaopen_cclua_bugly);
+    olua_require(L, "cclua.bugly.LogLevel", _olua_cls_cclua_bugly_LogLevel);
+    olua_require(L, "cclua.bugly", _olua_cls_cclua_bugly);
 #endif
 
     return 0;
